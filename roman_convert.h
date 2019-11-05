@@ -16,8 +16,8 @@ public:
 	 *param[out] rOut reference to the ouput resulted decimal to be stored in
 	 *return     RETURN_STATE enum of the error code or OK if no errors.
 	*/
-	virtual RETURN_STATE convert(const std::string &rIn, uint16_t &rOut);
-	virtual ~RomanNumerals(){}
+	RETURN_STATE convert(const std::string &rIn, uint16_t &rOut);
+	~RomanNumerals(){}
 private:
 	/* @param[in] romanNum: reference to the input Roman numeral string
 	 * return 	RETURN_STATE can be OK if no error or a certain error code
