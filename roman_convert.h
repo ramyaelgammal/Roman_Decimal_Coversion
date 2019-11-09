@@ -18,6 +18,7 @@ public:
 	*/
 	RETURN_STATE convert(const std::string &rIn, uint16_t &rOut);
 	~RomanNumerals(){}
+
 private:
 	/* @param[in] romanNum: reference to the input Roman numeral string
 	 * return 	RETURN_STATE can be OK if no error or a certain error code

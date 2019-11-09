@@ -26,4 +26,10 @@ enum class RETURN_STATE
 
 };
 
+
+//uint16_t operator %= (const  IntWrapper &lhs, const uint16_t &rhs)
+//{
+//	lhs.builtInInt = lhs.builtInInt % rhs; // integer division
+//	return lhs.builtInInt;
+//}
 #endif /* COMMON_H_ */
