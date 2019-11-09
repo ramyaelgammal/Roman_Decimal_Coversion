@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 #include "common.h"
-
+#include "IntWrapper.h"
 class DecimalNumerals
 {
 public:
@@ -20,7 +20,7 @@ public:
 	 *param[out] rOut reference to the ouput resulted Roman numeral to be stored in
 	 *return     RETURN_STATE enum of the error code or OK if no errors.
 	*/
-	RETURN_STATE convert(const double &rIn, std::string &rOut);
+	RETURN_STATE convert(const IntWrapper &rIn, std::string &rOut);
 
 private:
 	// check if passed number is a real dobule

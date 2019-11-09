@@ -86,7 +86,7 @@ int main() {
 					cout << "zero has no equivalent Roman Numeral\n";
 				}
 				else{
-					DecimalInst.convert(decInput,result);
+					DecimalInst.convert((IntWrapper)decInput,result);
 				}
 				if (result != "") (cout << "Equivalent Decimal Number is: "<< result);
 			}
@@ -127,7 +127,6 @@ void runTestCases()
 	cout << "\n================== Test Group 4: Decimal Troublesome Values Conversion =================\n\n";
 	testTroubleSomeDecimalValues();
 	cout << "\n================== Test Group 5: Decimal Normal Values Conversion ======================\n\n";
-
 	testNormalDecimalValue();
 
 }
@@ -268,27 +267,24 @@ void testTroubleSomeDecimalValues()
 	RETURN_STATE retState;
 
 	// Double/Float Conversion not allowed, return Roman Numeral should be empty
-	retState = decInst.convert(23.5, result);
-	cout << "TEST CASE 4.1: [Decimal Conversion] input [23.5] result[] empty           ? "<< (result=="") << endl;
-	cout << "               return state is RETURN_STATE::ERR_FLOAT_NOT_ALLOWED        ? "
-		 << (retState == RETURN_STATE::ERR_FLOAT_NOT_ALLOWED) << endl << endl;
+	retState = decInst.convert(IntWrapper(23.5), result); // Compilation Error
 
 	// Passing wrong inputs like strings or a character results in compilation errors.
 
 	// Negative Numbers
-	retState = decInst.convert(-24, result);
+	retState = decInst.convert(static_cast<IntWrapper>(-24), result);
 	cout << "TEST CASE 4.2: [Decimal Conversion] input [-24]  result[] empty           ? "<< (result=="") << endl;
 	cout << "               return state is RETURN_STATE::ERR_NEGATIVE_NUM_NOT_ALLOWED ? "
 		 << (retState == RETURN_STATE::ERR_NEGATIVE_NUM_NOT_ALLOWED) << endl << endl;
 
 	// Zero Decimal
-	retState = decInst.convert(0, result);
+	retState = decInst.convert(static_cast<IntWrapper>(0), result);
 	cout << "TEST CASE 4.3: [Decimal Conversion] input [0]    result[] empty           ? "<< (result=="") << endl;
 	cout << "               return state is RETURN_STATE::ERR_ZERO_NOT_ALLOWED         ? "
 		<< (retState == RETURN_STATE::ERR_ZERO_NOT_ALLOWED) << endl << endl;
 
 	// Greater than 10000 Decimal
-	retState = decInst.convert(10001, result);
+	retState = decInst.convert(IntWrapper(10001), result);
 	cout << "TEST CASE 4.4: [Decimal Conversion] input [0]    result[] empty           ? "<< (result=="") << endl;
 	cout << "               return state is RETURN_STATE::ERR_DECIMAL_OVER_MAX         ? "
 		<< (retState == RETURN_STATE::ERR_DECIMAL_OVER_MAX) << endl << endl;
@@ -301,48 +297,48 @@ void testNormalDecimalValue()
 	RETURN_STATE retState;
 
 	// Test Normal Values
-	retState = decInst.convert(15, result);
+	retState = decInst.convert(IntWrapper(15), result);
 	cout << "TEST CASE 5.1: [Decimal Conversion] input [15]    result[XV]                ? "<< (result=="XV") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
 	// Test Normal Values
-	retState = decInst.convert(23, result);
+	retState = decInst.convert(IntWrapper(23), result);
 	cout << "TEST CASE 5.2: [Decimal Conversion] input [23]    result[XXIII]             ? "<< (result=="XXIII") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
 	// Test Normal Values
-	retState = decInst.convert(45, result);
+	retState = decInst.convert(IntWrapper(45), result);
 	cout << "TEST CASE 5.3: [Decimal Conversion] input [45]    result[XLV]               ? "<< (result=="XLV") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
 	// Test Normal Values
-	retState = decInst.convert(234, result);
+	retState = decInst.convert(IntWrapper(234), result);
 	cout << "TEST CASE 5.4: [Decimal Conversion] input [234]   result[CCXXXIV]           ? "<< (result=="CCXXXIV") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
 	// Test Normal Values
-	retState = decInst.convert(1467, result);
+	retState = decInst.convert(IntWrapper(1467), result);
 	cout << "TEST CASE 5.5: [Decimal Conversion] input [1467]  result[MCDLXVII]          ? "<< (result=="MCDLXVII") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
 	// Test Normal Values
-	retState = decInst.convert(2765, result);
+	retState = decInst.convert(IntWrapper(2765), result);
 	cout << "TEST CASE 5.6: [Decimal Conversion] input [2765]  result[MMDCCLXV]          ? "<< (result=="MMDCCLXV") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
 	// Test Normal Values
-	retState = decInst.convert(3575, result);
+	retState = decInst.convert(IntWrapper(3575), result);
 	cout << "TEST CASE 5.7: [Decimal Conversion] input [2765]  result[MMMDLXXV]          ? "<< (result=="MMMDLXXV") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
 
-	retState = decInst.convert(9899, result);
+	retState = decInst.convert(IntWrapper(9899), result);
 	cout << "TEST CASE 5.7: [Decimal Conversion] input [9899]  result[MMMMMMMMMDCCCXCIX] ? "<< (result=="MMMMMMMMMDCCCXCIX") << endl;
 	cout << "               return state is RETURN_STATE::OK                             ? "
 		<< (retState == RETURN_STATE::OK) << endl << endl;
